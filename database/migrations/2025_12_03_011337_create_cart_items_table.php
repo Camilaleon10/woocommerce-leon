@@ -12,18 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cart_items', function (Blueprint $table) {
-            $table->id();
+    $table->id();                           // PK
 
-            // Más adelante los relacionarás:
-            $table->unsignedBigInteger('user_id')->nullable();    // usuario dueño del carrito
-            $table->unsignedBigInteger('product_id');             // producto en el carrito
+    // Si usas users:
+    $table->foreignId('user_id')
+          ->constrained('users')
+          ->cascadeOnDelete();
 
-            $table->integer('quantity')->default(1);              // cantidad
-            $table->decimal('price', 10, 2);                      // precio unitario al momento de agregar
-            $table->decimal('total', 10, 2);                      // quantity * price
+    $table->foreignId('product_id')
+          ->constrained('products')         // REFERENCES products(id)
+          ->cascadeOnDelete();
 
-            $table->timestamps();
-        });
+    $table->integer('quantity');
+    $table->decimal('price', 10, 2);        // precio unitario en el momento
+    $table->decimal('total', 10, 2);        // quantity * price
+
+    $table->timestamps();
+});
+
     }
 
     /**

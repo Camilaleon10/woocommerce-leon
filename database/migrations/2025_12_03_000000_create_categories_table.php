@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');           // nombre de la categoría
-            $table->string('slug')->unique(); // slug tipo "ropa-hombre"
-            $table->text('description')->nullable();
-            $table->timestamps();
-        });
+ Schema::create('categories', function (Blueprint $table) {
+    $table->id();                           // PK
+    $table->string('name');
+    $table->string('slug')->unique();
+    $table->text('description')->nullable();
+    $table->timestamps();
+});
+
     }
 
     /**
@@ -28,3 +29,4 @@ return new class extends Migration
         Schema::dropIfExists('categories');
     }
 };
+
