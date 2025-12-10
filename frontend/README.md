@@ -1,204 +1,227 @@
-# WooCommerce Leon - Frontend
+# Frontend WooCommerce Leon - HTML, CSS y JavaScript
 
-Frontend de la aplicación de e-commerce WooCommerce Leon, construido con React Vite y Tailwind CSS.
+Este es el frontend de la aplicación WooCommerce Leon, desarrollado con HTML, CSS y JavaScript vanilla para comunicarse con el backend Laravel.
 
 ## Características
 
-- 🛒 Catálogo de productos con búsqueda y filtros
+- 🛍️ Catálogo de productos con búsqueda y filtros
 - 🛒 Carrito de compras funcional
 - 👤 Sistema de autenticación de usuarios
-- 📍 Geolocalización con Google Maps API
-- 📱 Diseño responsivo
-- 🎨 Interfaz moderna con Tailwind CSS
-- ⚡ Rendimiento optimizado con Vite
-
-## Tecnologías Utilizadas
-
-- **React 18** - Framework de JavaScript
-- **Vite** - Herramienta de construcción
-- **React Router** - Enrutamiento
-- **Tailwind CSS** - Framework de CSS
-- **Axios** - Cliente HTTP
-- **Google Maps API** - Geolocalización
-
-## Requisitos Previos
-
-- Node.js 18+
-- npm o yarn
-
-## Instalación
-
-1. Clonar el repositorio:
-```bash
-git clone <repository-url>
-cd Woocommerce-Leon/frontend
-```
-
-2. Instalar dependencias:
-```bash
-npm install
-```
-
-3. Configurar variables de entorno:
-```bash
-cp .env.example .env
-```
-
-4. Configurar tu Google Maps API Key en `.env`:
-```
-VITE_GOOGLE_MAPS_API_KEY=tu_api_key_aqui
-```
-
-5. Iniciar servidor de desarrollo:
-```bash
-npm run dev
-```
-
-La aplicación estará disponible en `http://localhost:3000`
-
-## Configuración
-
-### Variables de Entorno
-
-- `VITE_API_URL` - URL de la API de Laravel (default: http://localhost:8000/api)
-- `VITE_GOOGLE_MAPS_API_KEY` - API Key de Google Maps
-- `VITE_APP_NAME` - Nombre de la aplicación
-- `VITE_APP_URL` - URL de la aplicación frontend
-
-### Google Maps API
-
-Para obtener una API Key de Google Maps:
-
-1. Ve a [Google Cloud Console](https://console.cloud.google.com/)
-2. Crea un nuevo proyecto o selecciona uno existente
-3. Habilita las siguientes APIs:
-   - Maps JavaScript API
-   - Places API
-   - Geocoding API
-4. Crea una API Key con restricciones apropiadas
-5. Añade la API Key a tu archivo `.env`
+- 📱 Diseño responsivo para todos los dispositivos
+- 🎨 Interfaz moderna y atractiva
+- 🔗 Integración completa con el backend Laravel
 
 ## Estructura del Proyecto
 
 ```
 frontend/
-├── public/                 # Archivos estáticos
-├── src/
-│   ├── components/         # Componentes reutilizables
-│   │   ├── ProductList.jsx
-│   │   ├── Cart.jsx
-│   │   ├── Header.jsx
-│   │   └── Footer.jsx
-│   ├── context/           # Contextos de React
-│   │   ├── AuthContext.jsx
-│   │   └── CartContext.jsx
-│   ├── pages/             # Páginas de la aplicación
-│   │   ├── Login.jsx
-│   │   └── Register.jsx
-│   ├── services/          # Servicios de API
-│   │   ├── api.js
-│   │   └── maps.js
-│   ├── utils/             # Utilidades
-│   ├── hooks/             # Hooks personalizados
-│   ├── App.jsx            # Componente principal
-│   ├── main.jsx           # Punto de entrada
-│   └── index.css          # Estilos globales
-├── package.json
-├── vite.config.js
-├── tailwind.config.js
-└── README.md
+├── index.html          # Página principal de la aplicación
+├── README.md           # Este archivo
+└── assets/             # Carpeta para imágenes y otros recursos (opcional)
 ```
+
+## Requisitos Previos
+
+1. **Servidor Backend Laravel**: Asegúrate de que el backend Laravel esté ejecutándose en `http://localhost:8000`
+2. **Navegador Web Moderno**: Chrome, Firefox, Safari, Edge (con soporte para ES6+)
+3. **Servidor Web Local**: Opcional, para servir los archivos estáticos
+
+## Configuración
+
+### 1. Configurar la API del Backend
+
+Abre el archivo `index.html` y verifica que la URL de la API esté correctamente configurada:
+
+```javascript
+const API_BASE_URL = 'http://localhost:8000/api';
+```
+
+### 2. Configurar Google Maps API (Opcional)
+
+Si planeas usar la funcionalidad de geolocalización, configura tu API key de Google Maps:
+
+```html
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&libraries=places"></script>
+```
+
+Reemplaza `TU_API_KEY` con tu clave de API de Google Maps.
+
+## Cómo Ejecutar el Frontend
+
+### Opción 1: Abrir directamente en el navegador
+
+La forma más sencilla es abrir el archivo `index.html` directamente en tu navegador:
+
+1. Abre tu navegador web
+2. Arrastra y suelta el archivo `index.html` en la ventana del navegador
+3. O haz doble clic en el archivo `index.html`
+
+### Opción 2: Usar un servidor web local (Recomendado)
+
+Para evitar problemas de CORS y tener una experiencia más similar a producción:
+
+#### Usando Python (si tienes Python instalado):
+
+```bash
+# Python 3
+python -m http.server 8001
+
+# Python 2
+python -m SimpleHTTPServer 8001
+```
+
+Luego abre `http://localhost:8001` en tu navegador.
+
+#### Usando Node.js (si tienes Node.js instalado):
+
+```bash
+# Instalar servidor HTTP globalmente
+npm install -g http-server
+
+# Iniciar servidor en el directorio frontend
+http-server -p 8001
+```
+
+Luego abre `http://localhost:8001` en tu navegador.
+
+#### Usando PHP (si tienes PHP instalado):
+
+```bash
+php -S localhost:8001
+```
+
+Luego abre `http://localhost:8001` en tu navegador.
 
 ## Funcionalidades
 
-### 🏠 Catálogo de Productos
-- Vista en grid con diseño responsivo
-- Búsqueda por nombre y descripción
-- Filtro por categoría
-- Ordenamiento por nombre, precio y stock
-- Indicadores de stock y disponibilidad
+### 1. Catálogo de Productos
 
-### 🛒 Carrito de Compras
-- Agregar/eliminar productos
-- Actualizar cantidades
-- Cálculo automático de totales
-- Integración con geolocalización para entrega
+- Visualización de todos los productos disponibles
+- Búsqueda de productos por nombre o descripción
+- Filtrado por categorías
+- Ordenamiento por nombre o precio
+- Indicadores de stock (disponible, bajo stock, agotado)
 
-### 👤 Autenticación
-- Registro e inicio de sesión
-- Tokens JWT con Laravel Sanctum
-- Protección de rutas
-- Perfil de usuario
+### 2. Carrito de Compras
 
-### 📍 Geolocalización
-- Detección automática de ubicación
-- Autocompletado de direcciones
-- Verificación de área de entrega
-- Cálculo de tiempo de entrega
+- Agregar productos al carrito (requiere autenticación)
+- Modificar cantidades de los productos
+- Eliminar productos del carrito
+- Cálculo automático de subtotal, IVA (12%) y envío
+- Vaciar carrito completo
 
-### 📱 Diseño Responsivo
-- Mobile-first approach
-- Navegación adaptativa
-- Optimizado para todos los dispositivos
+### 3. Autenticación de Usuarios
 
-## Scripts Disponibles
+- Registro de nuevos usuarios
+- Inicio de sesión
+- Mantenimiento de sesión con localStorage
+- Cierre de sesión
 
-- `npm run dev` - Iniciar servidor de desarrollo
-- `npm run build` - Construir para producción
-- `npm run preview` - Previsualizar construcción de producción
-- `npm run lint` - Ejecutar linter
+### 4. Diseño Responsivo
 
-## Integración con Backend
+- Adaptación automática a diferentes tamaños de pantalla
+- Navegación optimizada para móviles
+- Interfaz táctil amigable
 
-El frontend está configurado para comunicarse con el backend Laravel a través de:
+## API Endpoints Utilizados
 
-- **API REST** en `/api`
-- **Autenticación** con tokens Bearer
-- **CORS** configurado para permitir peticiones del frontend
+El frontend se comunica con los siguientes endpoints del backend Laravel:
 
-## Despliegue
+### Productos
+- `GET /api/products` - Obtener todos los productos
+- `GET /api/products/{id}` - Obtener un producto específico
 
-### Producción
-1. Construir la aplicación:
-```bash
-npm run build
-```
+### Categorías
+- `GET /api/categories` - Obtener todas las categorías
 
-2. Desplegar los archivos de la carpeta `dist/`
+### Autenticación
+- `POST /api/register` - Registrar nuevo usuario
+- `POST /api/login` - Iniciar sesión
+- `GET /api/user` - Obtener usuario autenticado
 
-3. Configurar las variables de entorno de producción
+### Carrito
+- `POST /api/cart-items` - Agregar item al carrito
+- `PUT /api/cart-items/{id}` - Actualizar cantidad de un item
+- `DELETE /api/cart-items/{id}` - Eliminar item del carrito
+- `DELETE /api/cart-items/clear` - Vaciar carrito
 
-### Vercel (Recomendado)
-```bash
-npm install -g vercel
-vercel --prod
-```
+## Personalización
 
-### Netlify
-```bash
-npm run build
-# Desplegar la carpeta dist/
-```
+### Cambiar Colores y Estilos
+
+Los estilos están definidos en la sección `<style>` del archivo `index.html`. Puedes modificar:
+
+- **Colores principales**: Busca las variables CSS o los colores hexadecimales
+- **Tipografía**: Modifica las fuentes importadas desde Google Fonts
+- **Espaciado**: Ajusta los valores de padding y margin
+- **Responsive**: Modifica los media queries para diferentes puntos de quiebre
+
+### Agregar Nuevas Funcionalidades
+
+Para agregar nuevas funcionalidades:
+
+1. **HTML**: Agrega nuevos elementos en las secciones correspondientes
+2. **CSS**: Añade estilos para los nuevos elementos
+3. **JavaScript**: Implementa la lógica en las funciones existentes o crea nuevas
+
+## Solución de Problemas
+
+### Problemas Comunes
+
+1. **Error de CORS**: Si recibes errores de CORS, asegúrate de:
+   - El backend Laravel esté configurado para permitir solicitudes desde tu dominio
+   - Estés usando un servidor web local en lugar de abrir el archivo directamente
+
+2. **Error de Autenticación**: Si no puedes iniciar sesión:
+   - Verifica que el backend esté funcionando correctamente
+   - Revisa la consola del navegador para ver errores de red
+
+3. **Productos no cargan**: Si el catálogo está vacío:
+   - Asegúrate de que haya productos en la base de datos del backend
+   - Verifica que la URL de la API sea correcta
+
+### Depuración
+
+Usa la consola de desarrollador de tu navegador (F12) para:
+- Ver errores de JavaScript
+- Inspeccionar solicitudes de red
+- Revisar el estado de la aplicación
+
+## Mejoras Futuras
+
+Algunas mejoras que podrías implementar:
+
+1. **Paginación**: Para manejar grandes cantidades de productos
+2. **Detalles de producto**: Página individual para cada producto
+3. **Gestión de direcciones**: Para envíos
+4. **Procesamiento de pagos**: Integración con pasarelas de pago
+5. **Historial de pedidos**: Ver pedidos anteriores
+6. **Calificaciones y reseñas**: Sistema de valoración de productos
+7. **Wishlist**: Lista de deseos de productos
+8. **Comparación de productos**: Comparar características
 
 ## Contribución
 
-1. Fork del proyecto
-2. Crear rama de feature: `git checkout -b feature/nueva-funcionalidad`
-3. Commit de cambios: `git commit -am 'Agregar nueva funcionalidad'`
-4. Push a la rama: `git push origin feature/nueva-funcionalidad`
-5. Abrir Pull Request
+Si deseas contribuir al proyecto:
+
+1. Realiza un fork del repositorio
+2. Crea una rama para tu funcionalidad
+3. Realiza los cambios necesarios
+4. Prueba thoroughly
+5. Envía un pull request
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
 ## Soporte
 
-Para soporte o preguntas:
-- 📧 Email: info@woocommerce-leon.com
-- 🌐 Web: www.woocommerce-leon.com
-- 📱 Teléfono: +593 9 8765 4321
+Si encuentras algún problema o tienes alguna pregunta:
+
+1. Revisa esta documentación
+2. Consulta la sección de solución de problemas
+3. Abre un issue en el repositorio del proyecto
 
 ---
 
-**Desarrollado con ❤️ para WooCommerce Leon**
+**Nota**: Este frontend está diseñado para funcionar específicamente con el backend Laravel de WooCommerce Leon. Asegúrate de tener ambos componentes correctamente configurados para un funcionamiento óptimo.
