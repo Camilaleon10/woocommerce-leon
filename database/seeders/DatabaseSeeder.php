@@ -13,12 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            CategorySeeder::class,
+            ProductSeeder::class,
+        ]);
+
         // User::factory(10)->create();
 
         // Crear usuario administrador
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
+            'password' => 'password', // Contraseña por defecto: password
             'is_admin' => true,
         ]);
 
@@ -26,6 +32,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => 'password', // Contraseña por defecto: password
         ]);
     }
 }

@@ -12,6 +12,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Rutas de autenticación
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+
 // Rutas públicas de la API de la tienda (por ahora sin auth)
 Route::apiResource('products', ProductController::class);
 Route::apiResource('categories', CategoryController::class);

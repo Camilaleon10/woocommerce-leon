@@ -16,10 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\IsAdmin::class,
         ]);
         
-        // Configurar CORS para API
-        $middleware->api(prepend: [
-            \Fruitcake\Cors\HandleCors::class,
-        ]);
+        // Configurar CORS para API (temporalmente desactivado)
+        // $middleware->api(prepend: [
+        //     \Fruitcake\Cors\HandleCors::class,
+        // ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
